@@ -1,2 +1,2 @@
 # eximinationsarbete2017
-Kod till arbetet
+Kod för beta inlämning
