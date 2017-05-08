@@ -13,75 +13,83 @@
 /****
 * 1-3kHz Butterworth 6th order
 *****/
-static int32_t xbuff[M+1]={0}; 
+static int32_t xbuff[M+1]={0};
 static int32_t b[M+1] ={
+
 180,                 0, -542,                 0,
 542,                 0, -180
-	
 
 }; //koefficienterna * 10000
-
-static int32_t y[N+1]={0}; 
+/****
+* 1-3kHz Butterworth 6th order
+*****/
+static int32_t y[N+1]={0};
 static int32_t a[N+1]={
+
 -1,   40491,    -73339,    76049,
 -47719,   17158,   -2780
-
 	
 }; //koefficienterna * 10000
 /*-------------------------------------------------*/
 
 /****
-*3-5 kHz Butterworth 8th order
+* 3-5 kHz Butterworth 8th order
 ****/
-static int32_t x2buff[M+1]={0}; 
+static int32_t x2buff[M+1]={0};
 static int32_t b2[M+1] ={
 
-180,                 0, -542,                 0,
-542,                 0, -180
+	180,                 0, -542,                 0,
+	542,                 0, -180
 
 }; //koefficienterna * 10000
-
-static int32_t y2[N+1]={0}; 
+/****
+* 3-5 kHz Butterworth 8th order
+****/
+static int32_t y2[N+1]={0};
 static int32_t a2[N+1]={
--1,   15466,    -25732,   20572,
--17065,  6553,   -2780
+	-1,   15466,    -25732,   20572,
+	-17065,  6553,   -2780
 }; //koefficienterna * 10000
 
 /*-------------------------------------------------*/
 /****
 * 5-7 kHz Butterworth 8th order
 ****/
-static int32_t x3buff[M+1]={0}; 
+static int32_t x3buff[M+1]={0};
 static int32_t b3[M+1] ={
 
-180,                 0, -542,                 0,
-542,                 0, -180
+	180,                 0, -542,                 0,
+	542,                 0, -180
 
 }; //koefficienterna * 10000
-static int32_t y3[N+1]={0}; 
+/****
+* 5-7 kHz Butterworth 8th order
+****/
+static int32_t y3[N+1]={0};
 static int32_t a3[N+1]={
--1,    -15466,    -25732,    -20572,
--17065,   -6553,   -2780
+	-1,    -15466,    -25732,    -20572,
+	-17065,   -6553,   -2780
 }; //koefficienterna * 10000
 /*-------------------------------------------------*/
 
 
 /****
-* 2.5-3 kHz Butterworth 8th order
+* 7-9 kHz Butterworth 8th order
 ****/
-/*static int32_t x4buff[M+1]={0}; // insignalen
+static int32_t x4buff[M+1]={0}; // insignalen
 static int32_t b4[M+1] ={
-	4,                 0,-16,                 0,
-	24,                 0,-16,                 0,
-	4
+180,                 0, -542,                 0,
+542,                 0, -180
 
 }; //koefficienterna * 10000
+/****
+* 7-9 kHz Butterworth 8th order
+****/
 static int32_t y4[N+1]={0}; //fördröjda värdena av utsignalen
 static int32_t a4[N+1]={
-	-1,    -11373,    -36673,    -28272,
-	-46536,    -23021,    -24339,   -6121,
-	-4382
-}; //koefficienterna * 10000*/
+-1,    -40491,    -73339,     -76049,
+-47719,    -17158,   -2780
+}; //koefficienterna * 10000
 
 //*******************************************************************************
 /*
@@ -128,13 +136,13 @@ A:
 --------------------------------
 2500-3000 Hz
 B:
-	4,                 0,-16,                 0,
-	24,                 0,-16,                 0,
-	4
+4,                 0,-16,                 0,
+24,                 0,-16,                 0,
+4
 A:
-	-1,    -11373,    -36673,    -28272,
-	-46536,    -23021,    -24339,   -6121,
-	-4382
+-1,    -11373,    -36673,    -28272,
+-46536,    -23021,    -24339,   -6121,
+-4382
 -------------------
 500-1000 Hz 7 ordningen butterworth
 B:
@@ -152,11 +160,11 @@ void TC0_Handler(void)
 {
 	volatile uint32_t ul_dummy;
 	uint32_t invalue, outvalue;
-	uint32_t out0,out1,out2,out3,out4;
+	uint32_t out0,out1,out2,out3;
 	uint32_t analogpin0,analogpin1,analogpin2,analogpin3;
 
 	
-	ul_dummy = tc_get_status(TC0, 0);			
+	ul_dummy = tc_get_status(TC0, 0);
 
 	
 	UNUSED(ul_dummy);
@@ -170,20 +178,24 @@ void TC0_Handler(void)
 	//Filter 1000-3000 Hz
 	out0 = 0;
 	out0 = oneToThreekHz(invalue);							// Filter
-	analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_7);	// Läser av analogpin0
-	out0 = modifyOutPut(out0,analogpin0);					// Gör modifierning av filter värdet
+	//	analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_7);	// Läser av analogpin0
+	//	out0 = modifyOutPut(out0,analogpin0);					// Gör modifierning av filter värdet
 
 	//Filter 3000-5000 Hz
 	out1 = 0;
-	out1 = threeToFivekHz(invalue);							// Filter
-	analogpin1 = adc_get_channel_value(ADC,ADC_CHANNEL_6);	// Läser av analogpin1
-	out1 = modifyOutPut(out1,analogpin1);					// Gör modifierning av filter värdet
+		out1 = threeToFivekHz(invalue);							// Filter
+	//	analogpin1 = adc_get_channel_value(ADC,ADC_CHANNEL_6);	// Läser av analogpin1
+	//	out1 = modifyOutPut(out1,analogpin1);					// Gör modifierning av filter värdet
 
 	//5000-7000 Hz
 	out2 = 0;
-	out2 = fiveToSevenkHz(invalue);							// Filter
-	analogpin2 = adc_get_channel_value(ADC,ADC_CHANNEL_5);	// Läser av analogpin2
-	out2 = modifyOutPut(out2,analogpin2);					// Gör modifierning av filter värdet
+		out2 = fiveToSevenkHz(invalue);							// Filter
+	//	analogpin2 = adc_get_channel_value(ADC,ADC_CHANNEL_5);	// Läser av analogpin2
+	//	out2 = modifyOutPut(out2,analogpin2);					// Gör modifierning av filter värdet
+	out3 = 0;
+	//	out3 = fiveToSevenkHz(invalue);							// Filter
+	//	analogpin3 = adc_get_channel_value(ADC,ADC_CHANNEL_4);	// Läser av analogpin2
+	//	out3 = modifyOutPut(out2,analogpin2);					// Gör modifierning av filter värdet
 	//OUTPUT
 	outvalue = (out0+out1+out2);							// Lägger till alla filter
 	
@@ -209,10 +221,10 @@ uint32_t oneToThreekHz(uint32_t invalue){
 	for( j =0; j<=M;j++){
 		sum += ((xbuff[j]*b[j]));
 	}
-	for( j =1; j<=N;j++){ 
+	for( j =1; j<=N;j++){
 		sumy += ((y[j]*a[j]));
 	}
-	for(i = N; i>1;i--){ 
+	for(i = N; i>1;i--){
 		y[i]=y[i-1];
 	}
 	totsum = ((sum/10000)+(sumy/10000));
@@ -238,10 +250,10 @@ uint32_t threeToFivekHz(uint32_t invalue){
 	for( j =0; j<=M;j++){
 		sum += ((x2buff[j]*b2[j]));
 	}
-	for( j =1; j<=N;j++){ 
+	for( j =1; j<=N;j++){
 		sumy += ((y2[j]*a2[j]));
 	}
-	for(i = N; i>1;i--){ 
+	for(i = N; i>1;i--){
 		y2[i]=y2[i-1];
 	}
 	totsum = ((sum/10000)+(sumy/10000));
@@ -265,10 +277,10 @@ uint32_t fiveToSevenkHz(uint32_t invalue){
 	for( j =0; j<=M;j++){
 		sum += ((x3buff[j]*b3[j]));
 	}
-	for( j =1; j<=N;j++){ 
+	for( j =1; j<=N;j++){
 		sumy += ((y3[j]*a3[j]));
 	}
-	for(i = N; i>1;i--){ 
+	for(i = N; i>1;i--){
 		y3[i]=y3[i-1];
 	}
 	totsum = ((sum/10000)+(sumy/10000));
@@ -290,5 +302,5 @@ uint32_t modifyOutPut(uint32_t filtervalue,uint32_t analogValue){
 		return (filtervalue*(0.75));
 		}else if((analogValue>3276)&&(analogValue<4095)){
 		return filtervalue;
-		}
+	}
 }
