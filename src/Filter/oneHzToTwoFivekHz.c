@@ -36,12 +36,12 @@ static int32_t asection1[N+1]={//Section 1
 }; //koefficienterna * 1000
 static int32_t asection2[N+1]={//Section 2
 
-	-1000,941,-449
+	-1000,1045,-477
 
 }; //koefficienterna * 1000
 static int32_t asection3[N+1]={//Section 3
 
-	-1000,1368,-369
+	-1000,1414,-414
 	
 }; //koefficienterna * 1000
 
