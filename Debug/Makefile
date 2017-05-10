@@ -89,6 +89,10 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../src/ASF/sam/drivers/adc/adc.c \
 ../src/Filter/Filter.c \
+../src/Filter/fiveToSevenkHz.c \
+../src/Filter/oneHzToTwoFivekHz.c \
+../src/Filter/sevenToNinekHz.c \
+../src/Filter/twofiveToFivekHz.c \
 ../src/InitADC_DAC/adcdac.c \
 ../src/Initinterrupt/init_tc.c \
 ../src/ASF/sam/drivers/adc/adc_sam3u.c \
@@ -117,6 +121,10 @@ ASM_SRCS +=
 OBJS +=  \
 src/ASF/sam/drivers/adc/adc.o \
 src/Filter/Filter.o \
+src/Filter/fiveToSevenkHz.o \
+src/Filter/oneHzToTwoFivekHz.o \
+src/Filter/sevenToNinekHz.o \
+src/Filter/twofiveToFivekHz.o \
 src/InitADC_DAC/adcdac.o \
 src/Initinterrupt/init_tc.o \
 src/ASF/sam/drivers/adc/adc_sam3u.o \
@@ -138,6 +146,10 @@ src/ASF/sam/utils/syscalls/gcc/syscalls.o
 OBJS_AS_ARGS +=  \
 src/ASF/sam/drivers/adc/adc.o \
 src/Filter/Filter.o \
+src/Filter/fiveToSevenkHz.o \
+src/Filter/oneHzToTwoFivekHz.o \
+src/Filter/sevenToNinekHz.o \
+src/Filter/twofiveToFivekHz.o \
 src/InitADC_DAC/adcdac.o \
 src/Initinterrupt/init_tc.o \
 src/ASF/sam/drivers/adc/adc_sam3u.o \
@@ -159,6 +171,10 @@ src/ASF/sam/utils/syscalls/gcc/syscalls.o
 C_DEPS +=  \
 src/ASF/sam/drivers/adc/adc.d \
 src/Filter/Filter.d \
+src/Filter/fiveToSevenkHz.d \
+src/Filter/oneHzToTwoFivekHz.d \
+src/Filter/sevenToNinekHz.d \
+src/Filter/twofiveToFivekHz.d \
 src/InitADC_DAC/adcdac.d \
 src/Initinterrupt/init_tc.d \
 src/ASF/sam/drivers/adc/adc_sam3u.d \
@@ -180,6 +196,10 @@ src/ASF/sam/utils/syscalls/gcc/syscalls.d
 C_DEPS_AS_ARGS +=  \
 src/ASF/sam/drivers/adc/adc.d \
 src/Filter/Filter.d \
+src/Filter/fiveToSevenkHz.d \
+src/Filter/oneHzToTwoFivekHz.d \
+src/Filter/sevenToNinekHz.d \
+src/Filter/twofiveToFivekHz.d \
 src/InitADC_DAC/adcdac.d \
 src/Initinterrupt/init_tc.d \
 src/ASF/sam/drivers/adc/adc_sam3u.d \
@@ -213,6 +233,14 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
+
+
 
 
 

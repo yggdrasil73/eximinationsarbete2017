@@ -417,6 +417,30 @@
     <Compile Include="src\Filter\Filter.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\Filter\fiveToSevenkHz.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Filter\fiveToSevenkHz.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Filter\oneHzToTwoFivekHz.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Filter\oneHzToTwoFivekHz.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Filter\sevenToNinekHz.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Filter\sevenToNinekHz.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Filter\twofiveToFivekHz.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Filter\twofiveToFivekHz.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\InitADC_DAC\adcdac.c">
       <SubType>compile</SubType>
     </Compile>

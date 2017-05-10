@@ -20,6 +20,7 @@ void adc_setup()
 	adc_enable_channel(ADC, ADC_CHANNEL_7);					// Analog pin 0
 	adc_enable_channel(ADC, ADC_CHANNEL_6);					// Analog pin 1
 	adc_enable_channel(ADC, ADC_CHANNEL_5);					// Analog pin 2
+	adc_enable_channel(ADC, ADC_CHANNEL_4);					// Analog pin 3
 	adc_configure_trigger(ADC, ADC_TRIG_SW, 0);				
 }
 

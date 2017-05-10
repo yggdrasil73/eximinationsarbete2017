@@ -1,6 +1,6 @@
-src/Filter/Filter.d src/Filter/Filter.o: ../src/Filter/Filter.c \
- ../src/asf.h ../src/ASF/sam/drivers/adc/adc.h \
- ../src/ASF/sam/utils/compiler.h \
+src/Filter/oneToTwoFivekHz.d src/Filter/oneToTwoFivekHz.o: \
+ ../src/Filter/oneToTwoFivekHz.c ../src/asf.h \
+ ../src/ASF/sam/drivers/adc/adc.h ../src/ASF/sam/utils/compiler.h \
  d:\atmel\ studio\ 7\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\5.3.1\include\stddef.h \
  ../src/ASF/common/utils/parts.h \
  ../src/ASF/sam/utils/preprocessor/preprocessor.h \
@@ -130,9 +130,7 @@ src/Filter/Filter.d src/Filter/Filter.o: ../src/Filter/Filter.c \
  ../src/ASF/sam/drivers/pmc/pmc.h ../src/ASF/common/services/clock/pll.h \
  ../src/ASF/common/services/clock/sam3x/pll.h \
  ../src/ASF/sam/drivers/pmc/sleep.h ../src/ASF/sam/drivers/tc/tc.h \
- ../src/ASF/sam/drivers/pio/pio_handler.h ../src/Filter/Filter.h \
- ../src/Filter/oneHzToTwoFivekHz.h ../src/Filter/twofiveToFivekHz.h \
- ../src/Filter/fiveToSevenkHz.h ../src/Filter/sevenToNinekHz.h
+ ../src/ASF/sam/drivers/pio/pio_handler.h ../src/Filter/oneToTwoFivekHz.h
 
 ../src/asf.h:
 
@@ -410,12 +408,4 @@ d:\atmel\ studio\ 7\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\al
 
 ../src/ASF/sam/drivers/pio/pio_handler.h:
 
-../src/Filter/Filter.h:
-
-../src/Filter/oneHzToTwoFivekHz.h:
-
-../src/Filter/twofiveToFivekHz.h:
-
-../src/Filter/fiveToSevenkHz.h:
-
-../src/Filter/sevenToNinekHz.h:
+../src/Filter/oneToTwoFivekHz.h:

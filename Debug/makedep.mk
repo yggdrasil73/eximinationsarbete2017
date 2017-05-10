@@ -6,6 +6,14 @@ src\ASF\sam\drivers\adc\adc.c
 
 src\Filter\Filter.c
 
+src\Filter\fiveToSevenkHz.c
+
+src\Filter\oneHzToTwoFivekHz.c
+
+src\Filter\sevenToNinekHz.c
+
+src\Filter\twofiveToFivekHz.c
+
 src\InitADC_DAC\adcdac.c
 
 src\Initinterrupt\init_tc.c

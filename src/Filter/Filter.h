@@ -8,7 +8,4 @@
 
 void TCO_Handler(void);
 uint32_t modifyOutPut(uint32_t filtervalue,uint32_t analogValue);
-uint32_t oneToThreekHz(uint32_t invalue);
-uint32_t threeToFivekHz(uint32_t invalue);
-uint32_t fiveToSevenkHz(uint32_t invalue);
 #endif /* SAMPEL_INT_H_ */

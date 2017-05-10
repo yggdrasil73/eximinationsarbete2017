@@ -19,7 +19,7 @@ void configure_tc(void)
 
 	/** Konfiguerar TC för 20 khz frevkens och triggar på RC jämförelse. */
 	tc_init(TC0, 0, 0 | TC_CMR_CPCTRG);			//Timer_clock_1 - MCK/2 - 42 MHz
-	tc_write_rc(TC0, 0, 2100);					//2100 -> fs = 20 kHz
+	tc_write_rc(TC0, 0, 2100);					//2100 -> fs = 20 kHz -> 20 kHz valdes för att man vill ha in 4 st filter. Ett filter tar ca 11-12 ms
 
 	/* Konfiguerar och sätter på interruptet på RC-jämförelsen*/
 	NVIC_EnableIRQ((IRQn_Type) ID_TC0);
