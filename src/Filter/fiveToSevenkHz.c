@@ -33,17 +33,17 @@ static int32_t ysection3[N+1]={0};//Section 3
 //Denominator
 static int32_t asection1[N+1]={//Section 1
 
-	-1000,-1182,-732
+	-1000,-1260,-709
 	
 }; //koefficienterna * 1000
 static int32_t asection2[N+1]={//Section 2
 
-	-1000,-78,-651
+	-1000,42,-597
 
 }; //koefficienterna * 1000
 static int32_t asection3[N+1]={//Section 3
 
-	-1000,-585,-414
+	-1000,-569,-324
 	
 }; //koefficienterna * 1000
 
@@ -117,7 +117,7 @@ uint32_t fiveToSevenkHz(uint32_t invalue){
 	for(o = M; o>1;o--){
 		ysection3[o]=ysection3[o-1];
 	}
-	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.08);
+	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.112);//0.09	*0.25
 	ysection3[1] = totsumsection3;
 	outvaluesection3 = totsumsection3;
 	return outvaluesection3;

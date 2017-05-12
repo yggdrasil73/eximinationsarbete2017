@@ -35,12 +35,12 @@
  }; //koefficienterna * 1000
  static int32_t asection2[N+1]={//Section 2
 
-	 -1000,-1045,-477
+	-1000,-941,-449
 	 
  }; //koefficienterna * 1000
  static int32_t asection3[N+1]={//Section 3
 
-	 -1000,-1414,-414
+	 -1000,-1368,-369
 	 
  }; //koefficienterna * 1000
  /*-------------------------------------------------*/
@@ -112,7 +112,7 @@ uint32_t sevenToNinekHz(uint32_t invalue){
 	for(o = M; o>1;o--){
 		ysection3[o]=ysection3[o-1];
 	}
-	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.10);
+	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.127);
 	ysection3[1] = totsumsection3;
 	outvaluesection3 = totsumsection3;
 	return outvaluesection3;

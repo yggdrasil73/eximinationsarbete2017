@@ -2,11 +2,23 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\ASF\common\services\serial\usart_serial.c
+
+src\ASF\common\utils\stdio\read.c
+
+src\ASF\common\utils\stdio\write.c
+
 src\ASF\sam\drivers\adc\adc.c
+
+src\ASF\sam\drivers\uart\uart.c
+
+src\ASF\sam\drivers\usart\usart.c
 
 src\Filter\Filter.c
 
 src\Filter\fiveToSevenkHz.c
+
+src\Filter\movingFilter.c
 
 src\Filter\oneHzToTwoFivekHz.c
 
