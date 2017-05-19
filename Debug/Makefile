@@ -86,9 +86,12 @@ SUBDIRS :=  \
 ../src/ASF/thirdparty/CMSIS/Lib/ \
 ../src/ASF/thirdparty/CMSIS/Lib/GCC/ \
 ../src/config/ \
+../src/Filter/movingFilter \
 ../src/InitADC_DAC \
 ../src/Initinterrupt \
-../src/Filter
+../src/Filter \
+../src/LCD \
+../src/Delay
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
@@ -99,17 +102,25 @@ C_SRCS +=  \
 ../src/ASF/sam/drivers/adc/adc.c \
 ../src/ASF/sam/drivers/uart/uart.c \
 ../src/ASF/sam/drivers/usart/usart.c \
+../src/Delay/DelayFunctions.c \
 ../src/Filter/Filter.c \
-../src/Filter/fiveToSevenkHz.c \
-../src/Filter/movingFilter.c \
-../src/Filter/oneHzToTwoFivekHz.c \
-../src/Filter/sevenToNinekHz.c \
-../src/Filter/twofiveToFivekHz.c \
+../src/Filter/2000To4kHz.c \
+../src/Filter/movingFilter/movingFilter1.c \
+../src/Filter/movingFilter/movingFilter2.c \
+../src/Filter/movingFilter/movingFIlter3.c \
+../src/Filter/movingFilter/movingFilterbandstop1.c \
+../src/Filter/500To1kHz.c \
+../src/Filter/4000To8kHz.c \
+../src/Filter/1000To2kHz.c \
+../src/Filter/movingFilter/movingFilterbandstop2.c \
+../src/Filter/movingFilter/movingFilterbandstop3.c \
 ../src/InitADC_DAC/adcdac.c \
 ../src/Initinterrupt/init_tc.c \
 ../src/ASF/sam/drivers/adc/adc_sam3u.c \
 ../src/ASF/sam/drivers/dacc/dacc.c \
 ../src/ASF/sam/drivers/tc/tc.c \
+../src/LCD/lcdApplication.c \
+../src/LCD/LCDFunctions.c \
 ../src/main.c \
 ../src/ASF/common/services/clock/sam3x/sysclk.c \
 ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.c \
@@ -137,17 +148,25 @@ src/ASF/common/utils/stdio/write.o \
 src/ASF/sam/drivers/adc/adc.o \
 src/ASF/sam/drivers/uart/uart.o \
 src/ASF/sam/drivers/usart/usart.o \
+src/Delay/DelayFunctions.o \
 src/Filter/Filter.o \
-src/Filter/fiveToSevenkHz.o \
-src/Filter/movingFilter.o \
-src/Filter/oneHzToTwoFivekHz.o \
-src/Filter/sevenToNinekHz.o \
-src/Filter/twofiveToFivekHz.o \
+src/Filter/2000To4kHz.o \
+src/Filter/movingFilter/movingFilter1.o \
+src/Filter/movingFilter/movingFilter2.o \
+src/Filter/movingFilter/movingFIlter3.o \
+src/Filter/movingFilter/movingFilterbandstop1.o \
+src/Filter/500To1kHz.o \
+src/Filter/4000To8kHz.o \
+src/Filter/1000To2kHz.o \
+src/Filter/movingFilter/movingFilterbandstop2.o \
+src/Filter/movingFilter/movingFilterbandstop3.o \
 src/InitADC_DAC/adcdac.o \
 src/Initinterrupt/init_tc.o \
 src/ASF/sam/drivers/adc/adc_sam3u.o \
 src/ASF/sam/drivers/dacc/dacc.o \
 src/ASF/sam/drivers/tc/tc.o \
+src/LCD/lcdApplication.o \
+src/LCD/LCDFunctions.o \
 src/main.o \
 src/ASF/common/services/clock/sam3x/sysclk.o \
 src/ASF/common/utils/interrupt/interrupt_sam_nvic.o \
@@ -168,17 +187,25 @@ src/ASF/common/utils/stdio/write.o \
 src/ASF/sam/drivers/adc/adc.o \
 src/ASF/sam/drivers/uart/uart.o \
 src/ASF/sam/drivers/usart/usart.o \
+src/Delay/DelayFunctions.o \
 src/Filter/Filter.o \
-src/Filter/fiveToSevenkHz.o \
-src/Filter/movingFilter.o \
-src/Filter/oneHzToTwoFivekHz.o \
-src/Filter/sevenToNinekHz.o \
-src/Filter/twofiveToFivekHz.o \
+src/Filter/2000To4kHz.o \
+src/Filter/movingFilter/movingFilter1.o \
+src/Filter/movingFilter/movingFilter2.o \
+src/Filter/movingFilter/movingFIlter3.o \
+src/Filter/movingFilter/movingFilterbandstop1.o \
+src/Filter/500To1kHz.o \
+src/Filter/4000To8kHz.o \
+src/Filter/1000To2kHz.o \
+src/Filter/movingFilter/movingFilterbandstop2.o \
+src/Filter/movingFilter/movingFilterbandstop3.o \
 src/InitADC_DAC/adcdac.o \
 src/Initinterrupt/init_tc.o \
 src/ASF/sam/drivers/adc/adc_sam3u.o \
 src/ASF/sam/drivers/dacc/dacc.o \
 src/ASF/sam/drivers/tc/tc.o \
+src/LCD/lcdApplication.o \
+src/LCD/LCDFunctions.o \
 src/main.o \
 src/ASF/common/services/clock/sam3x/sysclk.o \
 src/ASF/common/utils/interrupt/interrupt_sam_nvic.o \
@@ -199,17 +226,25 @@ src/ASF/common/utils/stdio/write.d \
 src/ASF/sam/drivers/adc/adc.d \
 src/ASF/sam/drivers/uart/uart.d \
 src/ASF/sam/drivers/usart/usart.d \
+src/Delay/DelayFunctions.d \
 src/Filter/Filter.d \
-src/Filter/fiveToSevenkHz.d \
-src/Filter/movingFilter.d \
-src/Filter/oneHzToTwoFivekHz.d \
-src/Filter/sevenToNinekHz.d \
-src/Filter/twofiveToFivekHz.d \
+src/Filter/2000To4kHz.d \
+src/Filter/movingFilter/movingFilter1.d \
+src/Filter/movingFilter/movingFilter2.d \
+src/Filter/movingFilter/movingFIlter3.d \
+src/Filter/movingFilter/movingFilterbandstop1.d \
+src/Filter/500To1kHz.d \
+src/Filter/4000To8kHz.d \
+src/Filter/1000To2kHz.d \
+src/Filter/movingFilter/movingFilterbandstop2.d \
+src/Filter/movingFilter/movingFilterbandstop3.d \
 src/InitADC_DAC/adcdac.d \
 src/Initinterrupt/init_tc.d \
 src/ASF/sam/drivers/adc/adc_sam3u.d \
 src/ASF/sam/drivers/dacc/dacc.d \
 src/ASF/sam/drivers/tc/tc.d \
+src/LCD/lcdApplication.d \
+src/LCD/LCDFunctions.d \
 src/main.d \
 src/ASF/common/services/clock/sam3x/sysclk.d \
 src/ASF/common/utils/interrupt/interrupt_sam_nvic.d \
@@ -230,17 +265,25 @@ src/ASF/common/utils/stdio/write.d \
 src/ASF/sam/drivers/adc/adc.d \
 src/ASF/sam/drivers/uart/uart.d \
 src/ASF/sam/drivers/usart/usart.d \
+src/Delay/DelayFunctions.d \
 src/Filter/Filter.d \
-src/Filter/fiveToSevenkHz.d \
-src/Filter/movingFilter.d \
-src/Filter/oneHzToTwoFivekHz.d \
-src/Filter/sevenToNinekHz.d \
-src/Filter/twofiveToFivekHz.d \
+src/Filter/2000To4kHz.d \
+src/Filter/movingFilter/movingFilter1.d \
+src/Filter/movingFilter/movingFilter2.d \
+src/Filter/movingFilter/movingFIlter3.d \
+src/Filter/movingFilter/movingFilterbandstop1.d \
+src/Filter/500To1kHz.d \
+src/Filter/4000To8kHz.d \
+src/Filter/1000To2kHz.d \
+src/Filter/movingFilter/movingFilterbandstop2.d \
+src/Filter/movingFilter/movingFilterbandstop3.d \
 src/InitADC_DAC/adcdac.d \
 src/Initinterrupt/init_tc.d \
 src/ASF/sam/drivers/adc/adc_sam3u.d \
 src/ASF/sam/drivers/dacc/dacc.d \
 src/ASF/sam/drivers/tc/tc.d \
+src/LCD/lcdApplication.d \
+src/LCD/LCDFunctions.d \
 src/main.d \
 src/ASF/common/services/clock/sam3x/sysclk.d \
 src/ASF/common/utils/interrupt/interrupt_sam_nvic.d \
@@ -269,6 +312,22 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -363,7 +422,21 @@ src/ASF/sam/drivers/usart/%.o: ../src/ASF/sam/drivers/usart/%.c
 	@echo Finished building: $<
 	
 
+src/Delay/%.o: ../src/Delay/%.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 5.3.1
+	$(QUOTE)D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAM3X8E__ -DARM_MATH_CM3=true -DBOARD=ARDUINO_DUE_X -D__SAM3X8E__ -Dprintf=iprintf  -I"../src" -I"../src/ASF/common/boards" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/gpio" -I"../src/ASF/common/services/ioport" -I"../src/ASF/common/utils" -I"../src/ASF/sam/boards" -I"../src/ASF/sam/boards/arduino_due_x" -I"../src/ASF/sam/drivers/pio" -I"../src/ASF/sam/drivers/pmc" -I"../src/ASF/sam/utils" -I"../src/ASF/sam/utils/cmsis/sam3x/include" -I"../src/ASF/sam/utils/cmsis/sam3x/source/templates" -I"../src/ASF/sam/utils/header_files" -I"../src/ASF/sam/utils/preprocessor" -I"../src/ASF/thirdparty/CMSIS/Include" -I"../src/ASF/thirdparty/CMSIS/Lib/GCC" -I"../src/config" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\CMSIS\Include" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL\sam3xa\include" -I"../src/ASF/sam/drivers/adc" -I"../src/ASF/sam/drivers/dacc" -I"../src/ASF/sam/drivers/tc" -I"../src/ASF/sam/drivers/uart" -I"../src/ASF/common/services/serial/sam_uart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/sam/drivers/usart"  -O1 -fdata-sections -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m3 -c -pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return  -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 src/Filter/%.o: ../src/Filter/%.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 5.3.1
+	$(QUOTE)D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAM3X8E__ -DARM_MATH_CM3=true -DBOARD=ARDUINO_DUE_X -D__SAM3X8E__ -Dprintf=iprintf  -I"../src" -I"../src/ASF/common/boards" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/gpio" -I"../src/ASF/common/services/ioport" -I"../src/ASF/common/utils" -I"../src/ASF/sam/boards" -I"../src/ASF/sam/boards/arduino_due_x" -I"../src/ASF/sam/drivers/pio" -I"../src/ASF/sam/drivers/pmc" -I"../src/ASF/sam/utils" -I"../src/ASF/sam/utils/cmsis/sam3x/include" -I"../src/ASF/sam/utils/cmsis/sam3x/source/templates" -I"../src/ASF/sam/utils/header_files" -I"../src/ASF/sam/utils/preprocessor" -I"../src/ASF/thirdparty/CMSIS/Include" -I"../src/ASF/thirdparty/CMSIS/Lib/GCC" -I"../src/config" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\CMSIS\Include" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL\sam3xa\include" -I"../src/ASF/sam/drivers/adc" -I"../src/ASF/sam/drivers/dacc" -I"../src/ASF/sam/drivers/tc" -I"../src/ASF/sam/drivers/uart" -I"../src/ASF/common/services/serial/sam_uart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/sam/drivers/usart"  -O1 -fdata-sections -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m3 -c -pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return  -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+src/Filter/movingFilter/%.o: ../src/Filter/movingFilter/%.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 5.3.1
 	$(QUOTE)D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAM3X8E__ -DARM_MATH_CM3=true -DBOARD=ARDUINO_DUE_X -D__SAM3X8E__ -Dprintf=iprintf  -I"../src" -I"../src/ASF/common/boards" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/gpio" -I"../src/ASF/common/services/ioport" -I"../src/ASF/common/utils" -I"../src/ASF/sam/boards" -I"../src/ASF/sam/boards/arduino_due_x" -I"../src/ASF/sam/drivers/pio" -I"../src/ASF/sam/drivers/pmc" -I"../src/ASF/sam/utils" -I"../src/ASF/sam/utils/cmsis/sam3x/include" -I"../src/ASF/sam/utils/cmsis/sam3x/source/templates" -I"../src/ASF/sam/utils/header_files" -I"../src/ASF/sam/utils/preprocessor" -I"../src/ASF/thirdparty/CMSIS/Include" -I"../src/ASF/thirdparty/CMSIS/Lib/GCC" -I"../src/config" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\CMSIS\Include" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL\sam3xa\include" -I"../src/ASF/sam/drivers/adc" -I"../src/ASF/sam/drivers/dacc" -I"../src/ASF/sam/drivers/tc" -I"../src/ASF/sam/drivers/uart" -I"../src/ASF/common/services/serial/sam_uart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/sam/drivers/usart"  -O1 -fdata-sections -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m3 -c -pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return  -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -392,6 +465,13 @@ src/ASF/sam/drivers/dacc/%.o: ../src/ASF/sam/drivers/dacc/%.c
 	
 
 src/ASF/sam/drivers/tc/%.o: ../src/ASF/sam/drivers/tc/%.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 5.3.1
+	$(QUOTE)D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAM3X8E__ -DARM_MATH_CM3=true -DBOARD=ARDUINO_DUE_X -D__SAM3X8E__ -Dprintf=iprintf  -I"../src" -I"../src/ASF/common/boards" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/gpio" -I"../src/ASF/common/services/ioport" -I"../src/ASF/common/utils" -I"../src/ASF/sam/boards" -I"../src/ASF/sam/boards/arduino_due_x" -I"../src/ASF/sam/drivers/pio" -I"../src/ASF/sam/drivers/pmc" -I"../src/ASF/sam/utils" -I"../src/ASF/sam/utils/cmsis/sam3x/include" -I"../src/ASF/sam/utils/cmsis/sam3x/source/templates" -I"../src/ASF/sam/utils/header_files" -I"../src/ASF/sam/utils/preprocessor" -I"../src/ASF/thirdparty/CMSIS/Include" -I"../src/ASF/thirdparty/CMSIS/Lib/GCC" -I"../src/config" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\CMSIS\Include" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL\sam3xa\include" -I"../src/ASF/sam/drivers/adc" -I"../src/ASF/sam/drivers/dacc" -I"../src/ASF/sam/drivers/tc" -I"../src/ASF/sam/drivers/uart" -I"../src/ASF/common/services/serial/sam_uart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/sam/drivers/usart"  -O1 -fdata-sections -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m3 -c -pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return  -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+src/LCD/%.o: ../src/LCD/%.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 5.3.1
 	$(QUOTE)D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAM3X8E__ -DARM_MATH_CM3=true -DBOARD=ARDUINO_DUE_X -D__SAM3X8E__ -Dprintf=iprintf  -I"../src" -I"../src/ASF/common/boards" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/gpio" -I"../src/ASF/common/services/ioport" -I"../src/ASF/common/utils" -I"../src/ASF/sam/boards" -I"../src/ASF/sam/boards/arduino_due_x" -I"../src/ASF/sam/drivers/pio" -I"../src/ASF/sam/drivers/pmc" -I"../src/ASF/sam/utils" -I"../src/ASF/sam/utils/cmsis/sam3x/include" -I"../src/ASF/sam/utils/cmsis/sam3x/source/templates" -I"../src/ASF/sam/utils/header_files" -I"../src/ASF/sam/utils/preprocessor" -I"../src/ASF/thirdparty/CMSIS/Include" -I"../src/ASF/thirdparty/CMSIS/Lib/GCC" -I"../src/config" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\CMSIS\Include" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL" -I"D:\Atmel Studio 7\7.0\toolchain\arm\arm-gnu-toolchain\bin\..\..\CMSIS_Atmel\Device\ATMEL\sam3xa\include" -I"../src/ASF/sam/drivers/adc" -I"../src/ASF/sam/drivers/dacc" -I"../src/ASF/sam/drivers/tc" -I"../src/ASF/sam/drivers/uart" -I"../src/ASF/common/services/serial/sam_uart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/sam/drivers/usart"  -O1 -fdata-sections -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m3 -c -pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return  -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

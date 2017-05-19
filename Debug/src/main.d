@@ -135,7 +135,9 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/sam/drivers/uart/uart.h ../src/ASF/sam/drivers/usart/usart.h \
  ../src/config/conf_uart_serial.h ../src/ASF/sam/drivers/tc/tc.h \
  ../src/ASF/sam/drivers/pio/pio_handler.h ../src/InitADC_DAC/adcdac.h \
- ../src/Initinterrupt/init_tc.h ../src/Filter/Filter.h
+ ../src/Initinterrupt/init_tc.h ../src/Filter/Filter.h \
+ ../src/Delay/DelayFunctions.h ../src/LCD/LCDFunctions.h \
+ ../src/LCD/lcdApplication.h
 
 ../src/asf.h:
 
@@ -430,3 +432,9 @@ d:\atmel\ studio\ 7\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\al
 ../src/Initinterrupt/init_tc.h:
 
 ../src/Filter/Filter.h:
+
+../src/Delay/DelayFunctions.h:
+
+../src/LCD/LCDFunctions.h:
+
+../src/LCD/lcdApplication.h:

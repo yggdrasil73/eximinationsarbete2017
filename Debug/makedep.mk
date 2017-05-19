@@ -14,17 +14,29 @@ src\ASF\sam\drivers\uart\uart.c
 
 src\ASF\sam\drivers\usart\usart.c
 
+src\Delay\DelayFunctions.c
+
 src\Filter\Filter.c
 
-src\Filter\fiveToSevenkHz.c
+src\Filter\2000To4kHz.c
 
-src\Filter\movingFilter.c
+src\Filter\movingFilter\movingFilter1.c
 
-src\Filter\oneHzToTwoFivekHz.c
+src\Filter\movingFilter\movingFilter2.c
 
-src\Filter\sevenToNinekHz.c
+src\Filter\movingFilter\movingFIlter3.c
 
-src\Filter\twofiveToFivekHz.c
+src\Filter\movingFilter\movingFilterbandstop1.c
+
+src\Filter\500To1kHz.c
+
+src\Filter\4000To8kHz.c
+
+src\Filter\1000To2kHz.c
+
+src\Filter\movingFilter\movingFilterbandstop2.c
+
+src\Filter\movingFilter\movingFilterbandstop3.c
 
 src\InitADC_DAC\adcdac.c
 
@@ -35,6 +47,10 @@ src\ASF\sam\drivers\adc\adc_sam3u.c
 src\ASF\sam\drivers\dacc\dacc.c
 
 src\ASF\sam\drivers\tc\tc.c
+
+src\LCD\lcdApplication.c
+
+src\LCD\LCDFunctions.c
 
 src\main.c
 

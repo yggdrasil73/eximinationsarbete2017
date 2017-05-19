@@ -1,6 +1,7 @@
-src/Filter/Filter.d src/Filter/Filter.o: ../src/Filter/Filter.c \
- ../src/asf.h ../src/ASF/sam/drivers/adc/adc.h \
- ../src/ASF/sam/utils/compiler.h \
+src/Filter/movingFilter/movingFIlter3.d \
+ src/Filter/movingFilter/movingFIlter3.o: \
+ ../src/Filter/movingFilter/movingFIlter3.c ../src/asf.h \
+ ../src/ASF/sam/drivers/adc/adc.h ../src/ASF/sam/utils/compiler.h \
  d:\atmel\ studio\ 7\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\5.3.1\include\stddef.h \
  ../src/ASF/common/utils/parts.h \
  ../src/ASF/sam/utils/preprocessor/preprocessor.h \
@@ -135,15 +136,8 @@ src/Filter/Filter.d src/Filter/Filter.o: ../src/Filter/Filter.c \
  ../src/ASF/common/services/serial/sam_uart/uart_serial.h \
  ../src/ASF/sam/drivers/uart/uart.h ../src/ASF/sam/drivers/usart/usart.h \
  ../src/config/conf_uart_serial.h ../src/ASF/sam/drivers/tc/tc.h \
- ../src/ASF/sam/drivers/pio/pio_handler.h ../src/Filter/Filter.h \
- ../src/Filter/500To1kHz.h ../src/Filter/1000To2kHz.h \
- ../src/Filter/2000To4kHz.h ../src/Filter/4000To8kHz.h \
- ../src/Filter/movingFilter/movingFilter1.h \
- ../src/Filter/movingFilter/movingFilter2.h \
- ../src/Filter/movingFilter/movingFilter3.h \
- ../src/Filter/movingFilter/movingFilterbandstop1.h \
- ../src/Filter/movingFilter/movingFilterbandstop2.h \
- ../src/Filter/movingFilter/movingFilterbandstop3.h
+ ../src/ASF/sam/drivers/pio/pio_handler.h \
+ ../src/Filter/movingFilter/movingFilter3.h
 
 ../src/asf.h:
 
@@ -433,24 +427,4 @@ d:\atmel\ studio\ 7\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\al
 
 ../src/ASF/sam/drivers/pio/pio_handler.h:
 
-../src/Filter/Filter.h:
-
-../src/Filter/500To1kHz.h:
-
-../src/Filter/1000To2kHz.h:
-
-../src/Filter/2000To4kHz.h:
-
-../src/Filter/4000To8kHz.h:
-
-../src/Filter/movingFilter/movingFilter1.h:
-
-../src/Filter/movingFilter/movingFilter2.h:
-
 ../src/Filter/movingFilter/movingFilter3.h:
-
-../src/Filter/movingFilter/movingFilterbandstop1.h:
-
-../src/Filter/movingFilter/movingFilterbandstop2.h:
-
-../src/Filter/movingFilter/movingFilterbandstop3.h:
