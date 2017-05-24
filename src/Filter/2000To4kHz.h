@@ -10,7 +10,7 @@
 #define FIVETOSEVENKHZ_H_
 
 
-uint32_t fiveToSevenkHz(uint32_t invalue);
+uint32_t twokToFourKHz(uint32_t invalue);
 
 
 #endif /* FIVETOSEVENKHZ_H_ */

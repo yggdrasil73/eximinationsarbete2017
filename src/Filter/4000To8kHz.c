@@ -5,7 +5,7 @@
  *  Author: Yggdrasil
  */ 
  #include <asf.h>
- #include "Filter/sevenToNinekHz.h"
+ #include "Filter/4000To8kHz.h"
 
  #define N 3
  #define M 3
@@ -30,23 +30,23 @@
  //Denominator
  static int32_t asection1[N+1]={//Section 1
 
-	 -1000,-1999,-999
+	 -1000,-1320,-672
 	 
  }; //koefficienterna * 1000
  static int32_t asection2[N+1]={//Section 2
 
-	-1000,-941,-449
+	-1000,396,-528
 	 
  }; //koefficienterna * 1000
  static int32_t asection3[N+1]={//Section 3
 
-	 -1000,-1368,-369
+	 -1000,-442,-158
 	 
  }; //koefficienterna * 1000
  /*-------------------------------------------------*/
 
-//7500-9999 Hz
-uint32_t sevenToNinekHz(uint32_t invalue){
+//4000-8000 Hz
+uint32_t fourKTo8Khz(uint32_t invalue){
 	int32_t sum1,sum2,sum3 = 0;
 	int32_t sumy1,sumy2,sumy3= 0;
 	float totsumsection1,totsumsection2,totsumsection3 = 0;
@@ -112,7 +112,7 @@ uint32_t sevenToNinekHz(uint32_t invalue){
 	for(o = M; o>1;o--){
 		ysection3[o]=ysection3[o-1];
 	}
-	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.127);
+	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.1);
 	ysection3[1] = totsumsection3;
 	outvaluesection3 = totsumsection3;
 	return outvaluesection3;

@@ -16,11 +16,11 @@ void adc_setup()
 	adc_init(ADC, sysclk_get_main_hz(), 20000000, 0);		// Konfiguerar för maximal frekvens på 84 MHz
 	adc_configure_timing(ADC, 0, 0, 0);
 	adc_set_resolution(ADC, ADC_MR_LOWRES_BITS_12);			// Sätter upplösningen på 12 bitar
-	adc_enable_channel(ADC, ADC_CHANNEL_10);				// Analog pin 8
-	adc_enable_channel(ADC, ADC_CHANNEL_7);					// Analog pin 0
+	adc_enable_channel(ADC, ADC_CHANNEL_10);				// Analog pin 8			
 	adc_enable_channel(ADC, ADC_CHANNEL_6);					// Analog pin 1
 	adc_enable_channel(ADC, ADC_CHANNEL_5);					// Analog pin 2
 	adc_enable_channel(ADC, ADC_CHANNEL_4);					// Analog pin 3
+	adc_enable_channel(ADC, ADC_CHANNEL_3);					// Analog pin 2
 	adc_configure_trigger(ADC, ADC_TRIG_SW, 0);				
 }
 

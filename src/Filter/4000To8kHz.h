@@ -10,7 +10,7 @@
 #define SEVENTONINEKHZ_H_
 
 
-uint32_t sevenToNinekHz(uint32_t invalue);
+uint32_t fourKTo8Khz(uint32_t invalue);
 
 
 #endif /* SEVENTONINEKHZ_H_ */

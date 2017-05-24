@@ -3,9 +3,9 @@
 *
 */
 #include <asf.h>
-#include "Filter/oneHzToTwoFivekHz.h"
+#include "Filter/1000To2kHz.h"
 //DIRECTFORM 1 Second order sections <- till filter i matlab
-//FRÅGA MICHAEL OM 1-2500 Hz  BLIR VÄLDIGT DÅLIG DÄMPNING OM MAN HAR DET FRÅN 1-2500. FUNGERADE INTE SÅ BRA FRÅN 250-2500
+
 #define N 3
 #define M 3
 
@@ -31,25 +31,25 @@ static int32_t ysection3[N+1]={0};//Section 3
 //Denominator
 static int32_t asection1[N+1]={//Section 1
 
-	-1000,1999,-999
+	-1000,1497,-819
 	
 }; //koefficienterna * 1000
 static int32_t asection2[N+1]={//Section 2
 
-	-1000,941,-449
+	-1000,1793,-893
 
 }; //koefficienterna * 1000
 static int32_t asection3[N+1]={//Section 3
 
-	-1000,1368,-369
+	-1000,1557,-726
 	
 }; //koefficienterna * 1000
 
 
 /*-------------------------------------------------*/
 
-//1-2750 Hz
-uint32_t oneHzToTwoFivekHz(uint32_t invalue){
+//1000-2000 Hz
+uint32_t oneKTo2KHz(uint32_t invalue){
 	int32_t sum1,sum2,sum3 = 0;
 	int32_t sumy1,sumy2,sumy3= 0;
 	float totsumsection1,totsumsection2,totsumsection3 = 0;
@@ -115,7 +115,7 @@ uint32_t oneHzToTwoFivekHz(uint32_t invalue){
 	for(o = M; o>1;o--){
 		ysection3[o]=ysection3[o-1];
 	}
-	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.134);
+	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.019);
 	ysection3[1] = totsumsection3;
 	outvaluesection3 = totsumsection3;
 	return outvaluesection3;

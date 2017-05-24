@@ -5,7 +5,7 @@
 *  Author: Yggdrasil
 */
 #include <asf.h>
-#include "Filter/fiveToSevenkHz.h"
+#include "Filter/2000To4kHz.h"
 //DIRECTFORM 1 Second order sections <- till filter i matlab
 
 #define N 3
@@ -33,25 +33,25 @@ static int32_t ysection3[N+1]={0};//Section 3
 //Denominator
 static int32_t asection1[N+1]={//Section 1
 
-	-1000,-1260,-709
+	-1000,1417,-788
 	
 }; //koefficienterna * 1000
 static int32_t asection2[N+1]={//Section 2
 
-	-1000,42,-597
+	-1000,590,-692
 
 }; //koefficienterna * 1000
 static int32_t asection3[N+1]={//Section 3
 
-	-1000,-569,-324
+	-1000,932,-509
 	
 }; //koefficienterna * 1000
 
 
 /*-------------------------------------------------*/
 
-//5000-7500 Hz
-uint32_t fiveToSevenkHz(uint32_t invalue){
+//2000-4000 Hz
+uint32_t twokToFourKHz(uint32_t invalue){
 	int32_t sum1,sum2,sum3 = 0;
 	int32_t sumy1,sumy2,sumy3= 0;
 	float totsumsection1,totsumsection2,totsumsection3 = 0;
@@ -71,6 +71,7 @@ uint32_t fiveToSevenkHz(uint32_t invalue){
 	for(  j=1; j<=N;j++){
 		sumy1 += ((ysection1[j]*asection1[j]));
 	}
+
 	
 	for(i = N; i>1;i--){
 		ysection1[i]=ysection1[i-1];
@@ -117,7 +118,7 @@ uint32_t fiveToSevenkHz(uint32_t invalue){
 	for(o = M; o>1;o--){
 		ysection3[o]=ysection3[o-1];
 	}
-	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.112);//0.09	*0.25
+	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.04);//0.09	*0.25
 	ysection3[1] = totsumsection3;
 	outvaluesection3 = totsumsection3;
 	return outvaluesection3;

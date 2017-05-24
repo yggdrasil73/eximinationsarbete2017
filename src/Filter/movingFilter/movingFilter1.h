@@ -2,7 +2,7 @@
 #ifndef MOVINGFILTER_H_
 #define MOVINGFILTER_H_
 
-uint32_t movingFilterkHz(uint32_t invalue);
+uint32_t movingFilter1(uint32_t invalue);
 
 
 

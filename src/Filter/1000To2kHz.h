@@ -10,7 +10,7 @@
 #define THREETOFIVE_H_
 
 
-uint32_t twofiveToFivekHz(uint32_t value);
+uint32_t oneKTo2KHz(uint32_t value);
 
 
 #endif /* THREETOFIVE_H_ */

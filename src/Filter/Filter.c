@@ -6,13 +6,19 @@
 */
 #include <asf.h>
 #include "Filter/Filter.h"
-#include "Filter/oneHzToTwoFivekHz.h"
-#include "Filter/twofiveToFivekHz.h"
-#include "Filter/fiveToSevenkHz.h"
-#include "Filter/sevenToNinekHz.h"
-#include "Filter/movingFilter.h"
-uint32_t sampelfrekvens;
+#include "Filter/500To1kHz.h"
+#include "Filter/1000To2kHz.h"
+#include "Filter/2000To4kHz.h"
+#include "Filter/4000To8kHz.h"
+#include "Filter/movingFilter/movingFilter1.h"
+#include "Filter/movingFilter/movingFilter2.h"
+#include "Filter/movingFilter/movingFilter3.h"
+#include "Filter/movingFilter/movingFilterbandstop1.h"
+#include "Filter/movingFilter/movingFilterbandstop2.h"
+#include "Filter/movingFilter/movingFilterbandstop3.h"
 
+extern sampelfrekvens;
+extern numberofband;
 /**
 *  Hanterar interruptet som då utför filtret
 */
@@ -20,9 +26,9 @@ void TC0_Handler(void)
 {
 	volatile uint32_t ul_dummy;
 	uint32_t invalue, outvalue;
-	uint32_t out0,out1,out2,out3,outmovingfilter;
+	uint32_t out0,out1,out2,out3,outmovingfilter,outmovingfilterbandstop;
 	uint32_t analogpin0,analogpin1,analogpin2,analogpin3;
-	
+	uint32_t temp1, temp2;
 
 	
 	ul_dummy = tc_get_status(TC0, 0);
@@ -36,40 +42,45 @@ void TC0_Handler(void)
 
 	invalue=adc_get_channel_value(ADC,ADC_CHANNEL_10);			// Läser av värdet på analogpin8 som är själva ljud signalen
 
-	if(ioport_get_pin_level(CHANGE_MODE)==1){
-		analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_7);
-		//printf("%i\n",1);
-		outmovingfilter = movingFilterkHz(invalue);
-		sampelfrekvens = MovingFilterfrekvens(analogpin0);
-		tc_write_rc(TC0, 0, sampelfrekvens);
-		//OUTPUT
-		outvalue = (outmovingfilter)+2048;	//lägger till filter på outvalue som skickas till DAC. 2048 lägger till offset!! på ~1.4 V
-	}else if(ioport_get_pin_level(CHANGE_MODE)==0){
-		tc_write_rc(TC0, 0, 2100);
-		//Filter 1-2750 Hz
-		out0 = 0;
-		out0 = oneHzToTwoFivekHz(invalue);//FUNGERAR BRA MEN SIGNALEN GÅR UPP LÅNGSAMT
-		//analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_7);
-		//out0 = modifyOutPut(out0,analogpin0);
-		//Filter 2250-5250 Hz
-		out1 = 0;
-		out1 = twofiveToFivekHz(invalue);//FUNGERAR BRA
-		//analogpin1 = adc_get_channel_value(ADC,ADC_CHANNEL_6);
-		//out1 = modifyOutPut(out1,analogpin1);
-		//Filter 4750-7750 Hz
-		out2 = 0;
-		out2 = fiveToSevenkHz(invalue);//FUNGERAR BRA
-		//analogpin2 = adc_get_channel_value(ADC,ADC_CHANNEL_5);
-		//out2 = modifyOutPut(out2,analogpin2);
-		//Filter 7250-9999 Hz
-		out3 = 0;
-		out3 = sevenToNinekHz(invalue);//FUNGERAR BRA
-		//analogpin3 = adc_get_channel_value(ADC,ADC_CHANNEL_4);
-		//out3 = modifyOutPut(out3,analogpin3);
+	if((ioport_get_pin_level(pin20)==1) && (ioport_get_pin_level(pin21)==1)){
+			sampelfrekvens = 2100;
+			tc_write_rc(TC0, 0, sampelfrekvens);
+			//Filter 500-1000 Hz
+			out0 = 0;
+			out0 = fiveHToOneKhz(invalue);
+			analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_6);
+			out0 = modifyOutPut(out0,analogpin0);
+			//Filter 1000-2000 Hz
+			out1 = 0;
+			out1 = oneKTo2KHz(invalue);
+			analogpin1 = adc_get_channel_value(ADC,ADC_CHANNEL_5);
+			out1 = modifyOutPut(out1,analogpin1);
+			//Filter 2000-4000 Hz
+			out2 = 0;
+			out2 = twokToFourKHz(invalue);
+			analogpin2 = adc_get_channel_value(ADC,ADC_CHANNEL_4);
+			out2 = modifyOutPut(out2,analogpin2);
+			//Filter 4000-8000 Hz
+			out3 = 0;
+			out3 = fourKTo8Khz(invalue);
+			analogpin3 = adc_get_channel_value(ADC,ADC_CHANNEL_3);
+			out3 = modifyOutPut(out3,analogpin3);
+			//OUTPUT
+			outvalue = (out0+out1+out2+out3)+2048;	///lägger till filter på outvalue som skickas till DAC. 2048 lägger till offset!! på ~1.4 V
+		}else if((ioport_get_pin_level(pin20)== 1 ) && (ioport_get_pin_level(pin21)==0)){
+			analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_6);
+			outmovingfilter = MovingFilterfrekvens(analogpin0,invalue);
+			tc_write_rc(TC0, 0, sampelfrekvens);
+			outvalue = (outmovingfilter)+2048;
 		
-		//OUTPUT
-		outvalue = (out0+out1+out2+out3)+2048;	///lägger till filter på outvalue som skickas till DAC. 2048 lägger till offset!! på ~1.4 V
-	}
+		}else if((ioport_get_pin_level(pin20)==0) && (ioport_get_pin_level(pin21)==1)){
+			analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_6);
+			outmovingfilterbandstop = MovingFilterfrekvensBandStop(analogpin0,invalue);
+			tc_write_rc(TC0, 0, sampelfrekvens);
+			outvalue = (outmovingfilterbandstop)+2048;
+		}else if((ioport_get_pin_level(pin20)== 0) && (ioport_get_pin_level(pin21)==0)) {
+			outvalue = 0;
+		}	
 
 	dacc_write_conversion_data(DACC,outvalue);	// Skickar ut värdet på DAC
 	
@@ -95,29 +106,58 @@ uint32_t modifyOutPut(uint32_t filtervalue,uint32_t analogValue){
 	}
 }
 
-uint32_t MovingFilterfrekvens(uint32_t analogmovingfilter){
+uint32_t MovingFilterfrekvens(uint32_t analogmovingfilter,uint32_t invalue){
+	if(analogmovingfilter<=683){
+		sampelfrekvens = 2100;
+		numberofband = 49;
+		return movingFilter1(invalue);
+	}else if(analogmovingfilter>683 && analogmovingfilter<=1365){
+		sampelfrekvens = 1050;
+		numberofband = 49;
+		return movingFilter1(invalue);
+	}else if(analogmovingfilter>1365 && analogmovingfilter <=2048){
+		sampelfrekvens = 2100;
+		numberofband = 50;
+		return movingFilter2(invalue);
+	}else if(analogmovingfilter>2048 && analogmovingfilter <= 2731){
+		sampelfrekvens = 1050;
+		numberofband = 50;
+		return movingFilter2(invalue);
+	}else if(analogmovingfilter>2731 && analogmovingfilter<=3414){
+		 sampelfrekvens = 2100;
+		 numberofband = 51;
+		return movingFilter3(invalue);
+	}else if(analogmovingfilter>3414 && analogmovingfilter<=4095){
+		sampelfrekvens = 1050;
+		numberofband = 51;
+		return movingFilter3(invalue);
+	}
+}
 
-	if(analogmovingfilter<=372){
-		return sampelfrekvens=14483;//Fs = 2900 Hzbandet: 1131-1421
-		}else if(analogmovingfilter>372 && analogmovingfilter<=744){
-		return sampelfrekvens=11667;//Fs = 3600 Hzbandet: 1404-1764
-		}else if(analogmovingfilter>744 && analogmovingfilter<=1116){
-		return sampelfrekvens=9333;//Fs = 4500 Hzbandet: 1755-2205
-		}else if(analogmovingfilter>1116 && analogmovingfilter<=1488){
-		return sampelfrekvens=7636;//Fs =5500 Hzbandet: 2145-2695
-		}else if(analogmovingfilter>1488 && analogmovingfilter<=1860){
-		return sampelfrekvens=6461;//Fs = 6500 Hzbandet: 2535-3185
-		}else if(analogmovingfilter>1860 && analogmovingfilter<=2232){
-		return sampelfrekvens=5250;//Fs = 8000 Hzbandet: 3120-3920
-		}else if(analogmovingfilter>2232 && analogmovingfilter<=2604){
-		return sampelfrekvens=4200;//Fs = 10000 Hzbandet: 3900-4900
-		}else if(analogmovingfilter>2604 && analogmovingfilter<=2976){
-		return sampelfrekvens=3818;//Fs = 11000 Hzbandet: 4290-5390
-		}else if(analogmovingfilter>2976 && analogmovingfilter<=3348){
-		return sampelfrekvens=3231;//Fs = 13000 Hzbandet: 5070-6370
-		}else if(analogmovingfilter>3348 && analogmovingfilter<=3720 ){
-		return sampelfrekvens=2625;//Fs = 16000 Hzbandet: 6240-7820
-		}else if(analogmovingfilter>3720 && analogmovingfilter<= 4096){
-		return sampelfrekvens=2100;//Fs = 20000 Hzbandet: 7800-9800
+uint32_t MovingFilterfrekvensBandStop(uint32_t analogmovingfilter,uint32_t invalue){
+	if(analogmovingfilter<=683){
+		sampelfrekvens = 2100;
+		numberofband = 49;
+		return movingFilterBandStop1(invalue);
+		}else if(analogmovingfilter>683 && analogmovingfilter<=1365){
+		sampelfrekvens = 1050;
+		numberofband = 49;
+		return movingFilterBandStop1(invalue);
+		}else if(analogmovingfilter>1365 && analogmovingfilter <=2048){
+		sampelfrekvens = 2100;
+		numberofband = 50;
+		return movingFilterBandStop2(invalue);
+		}else if(analogmovingfilter>2048 && analogmovingfilter <= 2731){
+		sampelfrekvens = 1050;
+		numberofband = 50;
+		return movingFilterBandStop2(invalue);
+		}else if(analogmovingfilter>2731 && analogmovingfilter<=3414){
+		sampelfrekvens = 2100;
+		numberofband = 51;
+		return movingFilterBandStop3(invalue);
+		}else if(analogmovingfilter>3414 && analogmovingfilter<=4095){
+		sampelfrekvens = 1050;
+		numberofband = 51;
+		return movingFilterBandStop3(invalue);
 	}
 }

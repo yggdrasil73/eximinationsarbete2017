@@ -5,7 +5,7 @@
 *  Author: Yggdrasil
 */
 #include <asf.h>
-#include "Filter/movingFilter.h"
+#include "Filter/movingFilter/movingFilter1.h"
 
 #define N 3
 #define M 3
@@ -32,23 +32,23 @@ static int32_t ysection3[N+1]={0};//Section 3
 
 //Denominator
 static int32_t asection1[N+1]={//Section 1
--1000,-1941,-945
+-1000,1945,-960
 
 }; //koefficienterna * 1000
 static int32_t asection2[N+1]={//Section 2
 
--1000,-1236,-577
+-1000,1973,-978
 
 }; //koefficienterna * 1000
 static int32_t asection3[N+1]={//Section 3
 
--1000,-1475,-509
+-1000,1931,-939
 
 }; //koefficienterna * 1000
 
 /*-------------------------------------------------*/
 
-uint32_t movingFilterkHz(uint32_t invalue){
+uint32_t movingFilter1(uint32_t invalue){
 	int32_t sum1,sum2,sum3 = 0;
 	int32_t sumy1,sumy2,sumy3= 0;
 	float totsumsection1,totsumsection2,totsumsection3 = 0;
@@ -114,7 +114,7 @@ uint32_t movingFilterkHz(uint32_t invalue){
 	for(o = M; o>1;o--){
 		ysection3[o]=ysection3[o-1];
 	}
-	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.10);
+	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.004);
 	ysection3[1] = totsumsection3;
 	outvaluesection3 = totsumsection3;
 	return outvaluesection3;

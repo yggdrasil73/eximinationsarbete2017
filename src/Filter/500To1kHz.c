@@ -3,53 +3,16 @@
 *
 */
 #include <asf.h>
-#include "Filter/twofiveToFivekHz.h"
+#include "Filter/500To1kHz.h"
 //DIRECTFORM 1 Second order sections <- till filter i matlab
+//FRÅGA MICHAEL OM 1-2500 Hz  BLIR VÄLDIGT DÅLIG DÄMPNING OM MAN HAR DET FRÅN 1-2500. FUNGERADE INTE SÅ BRA FRÅN 250-2500
 
-#define N 3
-#define M 3
-
-static int32_t xbuffsection1[M+1]={0};//Section 1
-static int32_t xbuffsection2[M+1]={0};//Section 2
-static int32_t xbuffsection3[M+1]={0};//Section 3
-
-//Numerator
-static int32_t bsection1[M+1] ={//Section 1
-	1000,0,-1000
-}; //koefficienterna * 1000
-static int32_t bsection2[M+1] ={//Section 2
-	1000,0,-1000
-}; //koefficienterna * 1000
-static int32_t bsection3[M+1] ={//Section 3
-	1000,0,-1000
-}; //koefficienterna * 1000
-
-static int32_t ysection1[N+1]={0};//Section 1
-static int32_t ysection2[N+1]={0};//Section 2
-static int32_t ysection3[N+1]={0};//Section 3
-
-//Denominator
-static int32_t asection1[N+1]={//Section 1
-
-	-1000,1260,-709
-	
-}; //koefficienterna * 1000
-static int32_t asection2[N+1]={//Section 2
-
-	-1000,-42,-597
-
-}; //koefficienterna * 1000
-static int32_t asection3[N+1]={//Section 3
-
-	-1000,569,-324
-	
-}; //koefficienterna * 1000
 
 
 /*-------------------------------------------------*/
 
-//2250-5250 Hz
-uint32_t twofiveToFivekHz(uint32_t invalue){
+//500-1000 Hz
+uint32_t fiveHToOneKhz(uint32_t invalue){
 	int32_t sum1,sum2,sum3 = 0;
 	int32_t sumy1,sumy2,sumy3= 0;
 	float totsumsection1,totsumsection2,totsumsection3 = 0;
@@ -115,7 +78,7 @@ uint32_t twofiveToFivekHz(uint32_t invalue){
 	for(o = M; o>1;o--){
 		ysection3[o]=ysection3[o-1];
 	}
-	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.113);
+	totsumsection3= (((sum3/1000)+(sumy3/1000))*0.01);
 	ysection3[1] = totsumsection3;
 	outvaluesection3 = totsumsection3;
 	return outvaluesection3;
