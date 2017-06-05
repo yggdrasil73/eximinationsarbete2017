@@ -1,8 +1,8 @@
 /*/*
-* sevenToNinekHz.c
+* movingFilter1.c
 *
-* Created: 2017-05-09 12:43:35
-*  Author: Yggdrasil
+* 
+*  Author: Michael Nilsson och Martin Bråhagen
 */
 #include <asf.h>
 #include "Filter/movingFilter/movingFilter1.h"
@@ -47,7 +47,7 @@ static int32_t asection3[N+1]={//Section 3
 }; //koefficienterna * 1000
 
 /*-------------------------------------------------*/
-
+//200-800 Hz
 uint32_t movingFilter1(uint32_t invalue){
 	int32_t sum1,sum2,sum3 = 0;
 	int32_t sumy1,sumy2,sumy3= 0;

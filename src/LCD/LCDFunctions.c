@@ -1,55 +1,57 @@
-//
-//  LCDFunctions.c
-//  Code to be used in task 1401c
-//
-//	Ulrik Eklund 2014
-//
-//
+
+/*
+* LCDFunctions.c
+*
+* Author:  Michael Nilsson och Martin Bråhagen
+*/
 
 #include <inttypes.h>
 #include <asf.h>
 #include "lcdFunctions.h"
-#include "Delay/DelayFunctions.h"	/* The sam3x8e microcontroller can write faster than the LCD controller can handle its inputs */
+#include "Delay/DelayFunctions.h"	
 
-int lcdInit(void)		/* Initializes the display on the LCD shield, returns 1 if everything is ok */
+/************************************************************************/
+/* Initialiserar skärmen på LCD-skölden. returnerar 1 om allt är ok   */
+/************************************************************************/
+int lcdInit(void)		
 {
-	int all_ok=1;		/* at the beginning assume nothing works */
+	int all_ok=1;		/* I början antar man att inget fungerar */
 	
 	/* At power on */
 	ioport_set_pin_dir(LCD_RS, IOPORT_DIR_OUTPUT);
 	ioport_set_pin_dir(LCD_Enable, IOPORT_DIR_OUTPUT);
 	ioport_set_port_dir(IOPORT_PIOC, LCD_mask_D4_D7, IOPORT_DIR_OUTPUT);
 	ioport_set_pin_level(LCD_Enable, LOW);
-	delayMicroseconds(30000);		/* wait > 15 ms */
+	delayMicroseconds(30000);		/* väntar > 15 ms */
 	ioport_set_pin_level(LCD_RS, LOW);
 	
-	/* Function set (interface is 8 bit long) */
+	/* Funktioner sätts (interface är 8 bit lång) */
 	ioport_set_pin_level(LCD_D4, HIGH);
 	ioport_set_pin_level(LCD_D5, HIGH);
 	ioport_set_pin_level(LCD_D6, LOW);
 	ioport_set_pin_level(LCD_D7, LOW);
 	ioport_set_pin_level(LCD_Enable, HIGH);
-	delayMicroseconds(1);		/* wait 1 us */
+	delayMicroseconds(1);		/* väntar 1 us */
 	ioport_set_pin_level(LCD_Enable, LOW);
-	delayMicroseconds(4100);	/* wait for more than 4,1 ms */
+	delayMicroseconds(4100);	/* väntar mer än 4,1 ms */
 	ioport_set_pin_level(LCD_D4, HIGH);
 	ioport_set_pin_level(LCD_D5, HIGH);
 	ioport_set_pin_level(LCD_D6, LOW);
 	ioport_set_pin_level(LCD_D7, LOW);
 	ioport_set_pin_level(LCD_Enable, HIGH);
-	delayMicroseconds(1);	/* delay 1 us */
+	delayMicroseconds(1);	/* väntar 1 us */
 	ioport_set_pin_level(LCD_Enable, LOW);
-	delayMicroseconds(100);	/* wait 100 us */
+	delayMicroseconds(100);	/* väntar 100 us */
 	ioport_set_pin_level(LCD_D4, HIGH);
 	ioport_set_pin_level(LCD_D5, HIGH);
 	ioport_set_pin_level(LCD_D6, LOW);
 	ioport_set_pin_level(LCD_D7, LOW);
 	ioport_set_pin_level(LCD_Enable, HIGH);
-	delayMicroseconds(1);	/* wait 1 us */
+	delayMicroseconds(1);	/* väntar 1 us */
 	ioport_set_pin_level(LCD_Enable, LOW);		
-	delayMicroseconds(100);	/* wait 100 us */
+	delayMicroseconds(100);	/* väntar 100 us */
 		
-	/* Set display to 4-bit input */
+	/* Sätter skärmen till 8-bit input */
 	ioport_set_pin_level(LCD_D4, LOW);
 	ioport_set_pin_level(LCD_D5, HIGH);
 	ioport_set_pin_level(LCD_D6, LOW);
@@ -58,14 +60,14 @@ int lcdInit(void)		/* Initializes the display on the LCD shield, returns 1 if ev
 	delayMicroseconds(1);
 	ioport_set_pin_level(LCD_Enable, LOW);
 	delayMicroseconds(100);
-	lcdWrite(0b00101000, LOW);		/* Two rows, small font */
-	lcdWrite(0b00001000, LOW);		/* Display off */
-	lcdWrite(0b00000001, LOW);		/* Display clear */
+	lcdWrite(0b00101000, LOW);		/* Andra raden, liten font */
+	lcdWrite(0b00001000, LOW);		/* Skärm av*/
+	lcdWrite(0b00000001, LOW);		/* Rensar skärm */
 	delayMicroseconds(3000);
-	lcdWrite(0b00000110, LOW);		/* Entry mode set: move cursor right, no display shift */
-	lcdWrite(0b00001111 ,LOW);		/* Display on, cursor on, blinking on */
+	lcdWrite(0b00000110, LOW);		/* Entry mode set: Flytar cursorn höger, ingen display shift*/
+	lcdWrite(0b00001111 ,LOW);		/* Skärm på, cursor på och blinkningp på  */
 
-	all_ok = 0;					/* simple return statement showing that the initialization of the LCD has completed */
+	all_ok = 0;					
 	return all_ok;
 }
 

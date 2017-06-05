@@ -1,4 +1,8 @@
-
+/*
+* movingFilter1.h
+*
+*	Author: Michael Nilsson och Martin Bråhagen
+*/
 #ifndef MOVINGFILTER_H_
 #define MOVINGFILTER_H_
 

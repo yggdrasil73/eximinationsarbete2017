@@ -1,8 +1,8 @@
 /*
  * movingFilterbandstop.c
  *
- * Created: 2017-05-16 10:00:21
- *  Author: Yggdrasil
+ * 
+ *  Author: Michael Nilsson och Martin Bråhagen
  */ 
  #include <asf.h>
  #include "Filter/movingFilter/movingFilterbandstop1.h"
@@ -47,7 +47,7 @@
  }; //koefficienterna * 1000
 
  /*-------------------------------------------------*/
-
+ //200-800 Hz
  uint32_t movingFilterBandStop1(uint32_t invalue){
  int32_t sum1,sum2,sum3 = 0;
  int32_t sumy1,sumy2,sumy3= 0;

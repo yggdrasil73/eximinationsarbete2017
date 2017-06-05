@@ -33,7 +33,6 @@ int main (void)
 	sysclk_init();
 	board_init();
 	ioport_init();
-
 	ioport_set_pin_dir(CHECK_PIN, IOPORT_DIR_OUTPUT);
 	ioport_set_pin_dir(pin20,IOPORT_DIR_OUTPUT);
 	ioport_set_pin_level(pin20,LOW);
@@ -45,8 +44,9 @@ int main (void)
 	configure_tc();
 	delayInit();
 	lcdInit();
+	//LCD SETUP
 	while(1){
-	/*	lcdClearDisplay();
+	lcdClearDisplay();
 		delayMicroseconds(50000);
 		sampel= (42000000/sampelfrekvens);
 		lcdWrite4DigitNumber(sampel);
@@ -69,7 +69,7 @@ int main (void)
 		}else if((ioport_get_pin_level(pin20)==1) && (ioport_get_pin_level(pin21)==1)){
 		lcdWriteAsciiString("4Band");
 		delayMicroseconds(50000);
-		}*/
+		}
 	}
 }
 

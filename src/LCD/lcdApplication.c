@@ -1,13 +1,14 @@
 /*
  * lcdApplication.c
  *
- * Created: 2015-09-10 08:44:50
- *  Author: Patricia Jönsson och Martin Bråhagen
+ *  Author: Michael Nilsson och Martin Bråhagen
  */ 
 #include "LCDFunctions.h"
 #include "lcdApplication.h"
 
-
+/************************************************************************/
+/* Skriver ut ett tal på skärmen. Ett tal som är 5 siffror som max      */
+/************************************************************************/
 int lcdWrite4DigitNumber(int number)
 /*  
  * To write on the display we need to send numbers between 0-9.
@@ -38,9 +39,12 @@ int lcdWrite4DigitNumber(int number)
 	return 0;	
 }
 
+/************************************************************************/
+/* Skriver ut en sträng på LCD-skärmen                                  */
+/************************************************************************/
 int lcdWriteAsciiString(const char *string)
 {
-	while(*string !='\0') {			/* Writes out one char at a time*/
+	while(*string !='\0') {			
 		lcdWrite(*string,HIGH);
 		string++;
 	}

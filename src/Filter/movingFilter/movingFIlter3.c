@@ -1,8 +1,8 @@
 /*
  * movingFIlter3.c
  *
- * Created: 2017-05-18 10:16:58
- *  Author: Yggdrasil
+ * 
+ *  Author: Michael Nilsson och Martin Bråhagen
  */ 
  
  #include <asf.h>
@@ -48,7 +48,7 @@
  }; //koefficienterna * 1000
 
  /*-------------------------------------------------*/
-
+ //3200-12800 hz
  uint32_t movingFilter3(uint32_t invalue){
  int32_t sum1,sum2,sum3 = 0;
  int32_t sumy1,sumy2,sumy3= 0;

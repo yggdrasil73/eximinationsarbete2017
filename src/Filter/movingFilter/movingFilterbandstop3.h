@@ -1,8 +1,8 @@
 /*
  * movingFilterbandstop3.h
  *
- * Created: 2017-05-18 11:04:12
- *  Author: Yggdrasil
+ *
+ * Author: Michael Nilsson och Martin Bråhagen
  */ 
 
 

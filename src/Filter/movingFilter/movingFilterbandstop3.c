@@ -1,8 +1,8 @@
 /*
  * movingFilterbandstop3.c
  *
- * Created: 2017-05-18 11:04:01
- *  Author: Yggdrasil
+ * 
+ *  Author: Michael Nilsson och Martin Bråhagen
  */ 
  
  
@@ -49,7 +49,7 @@
  }; //koefficienterna * 1000
 
  /*-------------------------------------------------*/
-
+  //3200-12800 hz
  uint32_t movingFilterBandStop3(uint32_t invalue){
  int32_t sum1,sum2,sum3 = 0;
  int32_t sumy1,sumy2,sumy3= 0;

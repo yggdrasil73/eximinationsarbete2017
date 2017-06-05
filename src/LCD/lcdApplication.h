@@ -1,8 +1,7 @@
 /*
  * lcdApplication.h
  *
- * Created: 2015-09-10 08:46:16
- *  Author: Uek
+ *  Author:  Michael Nilsson och Martin Bråhagen
  */ 
 
 #ifndef LCDAPPLICATION_H_

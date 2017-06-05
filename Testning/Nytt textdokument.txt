@@ -1,0 +1,8 @@
+Kör igenom testbänken med bara det ljud man är intresserad av:
+För båda de intressanta ljudet!
+
+Då man inte använder sig av filtren ska det vara skitsvårt att hitta ljudet!!!!
+
+
+Första med slumpande värden(15) utan filter
+Andra med slumpande värden(15) med filter ( Spara konfigurationen på filtren)

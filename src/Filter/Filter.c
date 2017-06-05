@@ -66,18 +66,18 @@ void TC0_Handler(void)
 			analogpin3 = adc_get_channel_value(ADC,ADC_CHANNEL_3);
 			out3 = modifyOutPut(out3,analogpin3);
 			//OUTPUT
-			outvalue = (out0+out1+out2+out3)+2048;	///lägger till filter på outvalue som skickas till DAC. 2048 lägger till offset!! på ~1.4 V
-		}else if((ioport_get_pin_level(pin20)== 1 ) && (ioport_get_pin_level(pin21)==0)){
-			analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_6);
-			outmovingfilter = MovingFilterfrekvens(analogpin0,invalue);
-			tc_write_rc(TC0, 0, sampelfrekvens);
-			outvalue = (outmovingfilter)+2048;
+			outvalue = (out0+out1+out2+out3)+2048;							// Lägger till filter på outvalue som skickas till DAC. 2048 lägger till offset!! på ~1.4 V
+		}else if((ioport_get_pin_level(pin20)== 1 ) && (ioport_get_pin_level(pin21)==0)){ // Moving bandPASSfilter
+			analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_6);			// Läser av potentiometer
+			outmovingfilter = MovingFilterfrekvens(analogpin0,invalue);		// Utför beräkningarna till filtret. Sätter sampelfrekvens!
+			tc_write_rc(TC0, 0, sampelfrekvens);							// Sampelfrekvens sätts			
+			outvalue = (outmovingfilter)+2048;								// Sätter utvärdet
 		
-		}else if((ioport_get_pin_level(pin20)==0) && (ioport_get_pin_level(pin21)==1)){
-			analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_6);
-			outmovingfilterbandstop = MovingFilterfrekvensBandStop(analogpin0,invalue);
-			tc_write_rc(TC0, 0, sampelfrekvens);
-			outvalue = (outmovingfilterbandstop)+2048;
+		}else if((ioport_get_pin_level(pin20)==0) && (ioport_get_pin_level(pin21)==1)){// Moving bandSPÄRRfilter
+			analogpin0 = adc_get_channel_value(ADC,ADC_CHANNEL_6);						// Läser av potentiometer
+			outmovingfilterbandstop = MovingFilterfrekvensBandStop(analogpin0,invalue);	// Utför beräkningarna till filtret. Sätter sampelfrekvens!
+			tc_write_rc(TC0, 0, sampelfrekvens);										// Sampelfrekvens sätts		
+			outvalue = (outmovingfilterbandstop)+2048;									// Sätter utvärdet
 		}else if((ioport_get_pin_level(pin20)== 0) && (ioport_get_pin_level(pin21)==0)) {
 			outvalue = 0;
 		}	
@@ -105,7 +105,12 @@ uint32_t modifyOutPut(uint32_t filtervalue,uint32_t analogValue){
 		return filtervalue;
 	}
 }
-
+/************************************************************************/		
+/* Metoden är till för moving bandSPÄRRfilter							*/
+/* Läser av potentiometern, Därefter sätts sampelfrekvensen och			*/
+/*  Ett anrop till filtermetoden görs som då returnerar värdet från		*/
+/*  beräkningen från filtret                                            */
+/************************************************************************/
 uint32_t MovingFilterfrekvens(uint32_t analogmovingfilter,uint32_t invalue){
 	if(analogmovingfilter<=683){
 		sampelfrekvens = 2100;
@@ -133,7 +138,12 @@ uint32_t MovingFilterfrekvens(uint32_t analogmovingfilter,uint32_t invalue){
 		return movingFilter3(invalue);
 	}
 }
-
+/************************************************************************/
+/* Metoden är till för moving bandSPÄRRfilter							*/
+/* Läser av potentiometern, Därefter sätts sampelfrekvensen och			*/
+/*  Ett anrop till filtermetoden görs som då returnerar värdet från		*/
+/*  beräkningen från filtret                                            */
+/************************************************************************/
 uint32_t MovingFilterfrekvensBandStop(uint32_t analogmovingfilter,uint32_t invalue){
 	if(analogmovingfilter<=683){
 		sampelfrekvens = 2100;

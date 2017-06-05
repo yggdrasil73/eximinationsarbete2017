@@ -1,8 +1,7 @@
 /*
  * movingFilter2.h
  *
- * Created: 2017-05-18 10:14:02
- *  Author: Yggdrasil
+ *  Author: Michael Nilsson och Martin Bråhagen
  */ 
 
 

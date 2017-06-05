@@ -1,9 +1,8 @@
-//
-//  LCDFunctions.h
-//
-//  Ulrik Eklund 2015
-//
-//
+/*
+* LCDFunctions.h
+*
+*  Author: Michael Nilsson och Martin Bråhagen
+*/
 
 
 #ifndef LCDFunctions_h
